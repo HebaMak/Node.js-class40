@@ -23,6 +23,26 @@ let server = http.createServer(function (req, res) {
     return
   }
 
+	//include index.js
+	if(req.url === '/index.js') {
+    fs.readFile('index.js' , (err , content) => {
+      if(err) throw err
+      res.writeHead(200 , {'Content-Type' : 'application/javascript'})
+      res.end(content , 'utf8')
+    })
+    return
+  }
+
+	//include style.css
+	if(req.url === '/style.css') {
+    fs.readFile('style.css' , (err , content) => {
+      if(err) throw err
+      res.writeHead(200 , {'Content-Type' : 'text/css'})
+      res.end(content , 'utf8')
+      return
+    })
+    return
+  }
 
 });
 
