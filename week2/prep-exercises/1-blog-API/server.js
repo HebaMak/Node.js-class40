@@ -34,6 +34,19 @@ app.put('/posts/:title', (req, res) => {
   }
 })
 
+//delete a post
+app.delete('/blogs/:title', (req, res) => {
+  // How to get the title from the url parameters?
+  const title = req.params.title
+
+  if (fs.existsSync(title)) { // Add condition here
+    fs.unlinkSync(title);
+    res.end('ok');
+  } else {
+    res.end('This post does not exist!');
+  }
+})
+
 
 
 app.listen(3000 , ()=> console.log('server is running at 3000'))
