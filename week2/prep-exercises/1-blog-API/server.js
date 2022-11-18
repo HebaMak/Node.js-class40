@@ -10,6 +10,21 @@ app.get('/', function (req, res) {
   res.send('Hello World')
 })
 
+//get one blog
+app.get('/blogs/:title', (req, res) => {
+
+  // How to get the title from the url parameters?
+  const title = req.params.title
+
+  // check if post exists
+  const post = fs.readFileSync(title);
+
+  if(fs.existsSync(title)) {
+    // send response
+    res.end(post)
+  }
+})
+
 //create a post
 app.post('/blogs', (req, res) => {
     // How to get the title and content from the request??
