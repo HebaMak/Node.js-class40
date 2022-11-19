@@ -23,6 +23,14 @@ describe("POST /", () => {
   describe("when the cityName is empty", () => {
     it("should response 400 when not containing a cityName", async() => {
       const response = await request.post('/weather').send({
+        cityName: "jrrivmd"
+      })
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toHaveProperty('weatherText', 'City is not found!');
+    });
+
+    it("should response 400 when not containing a cityName", async() => {
+      const response = await request.post('/weather').send({
         cityName: ""
       })
       expect(response.statusCode).toBe(400);
